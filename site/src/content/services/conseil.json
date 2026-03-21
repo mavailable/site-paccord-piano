@@ -1,0 +1,11 @@
+{
+  "title": "Conseil à l'achat et à la vente",
+  "slug": "conseil",
+  "shortDesc": "L'expertise d'un professionnel avant de décider. Évitez les mauvaises surprises avec un diagnostic complet.",
+  "description": "Vous achetez un piano d'occasion chez un particulier ? Simon vous accompagne pour inspecter l'instrument, évaluer son état réel et vous proposer un devis de remise en état. Vous vendez le vôtre ? Il estime sa valeur marchande et peut le préparer pour la vente. L'expertise d'un technicien BMA avant un achat évite bien des mauvaises surprises.",
+  "price": "À partir de 60 €",
+  "priceNote": "+ frais de déplacement selon distance",
+  "image": "/images/services/1280_services_conseil.webp",
+  "imageAlt": "Expertise d'un piano d'occasion avant achat",
+  "order": 5
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Réparations & Restaurations",
+  "slug": "reparations",
+  "shortDesc": "Pour prolonger la vie de votre instrument. Des petites réparations aux restaurations complètes, avec devis préalable.",
+  "description": "Touches muettes, notes qui ne sonnent plus, pédales défaillantes, casse suite à un sinistre ? Simon prend en charge les petites réparations du quotidien comme les restaurations complètes d'instruments anciens. Chaque intervention est précédée d'un diagnostic honnête et d'un devis détaillé.",
+  "price": "Sur devis",
+  "priceNote": "Devis gratuit après diagnostic",
+  "image": "/images/services/1280_services_reparations.webp",
+  "imageAlt": "Restauration complète d'un piano ancien par Simon PACOR",
+  "order": 4
+}

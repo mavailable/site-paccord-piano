@@ -1,0 +1,7 @@
+{
+  "sectionTitle": "Réservez votre accord",
+  "sectionSubtitle": "Entrez votre code postal pour connaître votre tarif et vérifier que vous êtes dans la zone d'intervention.",
+  "step1Title": "Votre code postal",
+  "step2Title": "Vos disponibilités et coordonnées",
+  "formSuccessUrl": "/merci"
+}

@@ -1,0 +1,135 @@
+---
+import '../styles/global.css';
+import { getSiteInfo } from '@data/content';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://paccord-piano.fr/images/og-image.jpg',
+  ogType = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const siteInfo = getSiteInfo();
+const umamiId = import.meta.env.UMAMI_WEBSITE_ID;
+
+// Normalise schema en tableau
+const schemas = schema
+  ? (Array.isArray(schema) ? schema : [schema])
+  : [];
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO de base -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={siteInfo.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon + PWA manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1a1a1a" />
+
+    <!-- Polices chargées via fontsource (bundle Vite, pas de requête externe) -->
+
+    <!-- Meta additionnels (OG overrides par page, schema par page) -->
+    <slot name="head" />
+
+    <!-- Schema.org JSON-LD -->
+    {schemas.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} />
+    ))}
+  </head>
+
+  <body>
+    <!-- Skip-to-content : premier élément du body, OBLIGATOIRE WCAG 2.1 AA -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent-500 focus:text-neutral-900 focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:shadow-modal"
+    >
+      Aller au contenu principal
+    </a>
+
+    <!-- Header -->
+    <slot name="header" />
+
+    <!-- Contenu principal -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <slot name="footer" />
+
+    <!-- Umami Analytics — sans cookies, RGPD-exempt -->
+    {umamiId && (
+      <script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id={umamiId}
+      />
+    )}
+
+    <!-- Tracking événements de conversion (Umami) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Clics téléphone
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+          link.addEventListener('click', () => {
+            if (typeof umami !== 'undefined') umami.track('phone-click');
+          });
+        });
+        // Clics email
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+          link.addEventListener('click', () => {
+            if (typeof umami !== 'undefined') umami.track('email-click');
+          });
+        });
+        // Clics CTA principaux (data-track="cta")
+        document.querySelectorAll('[data-track="cta"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (typeof umami !== 'undefined') umami.track('cta-click');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

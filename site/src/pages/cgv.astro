@@ -1,0 +1,199 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+
+const title = "Conditions Générales de Vente | P'Accord Piano";
+const description = "Conditions générales de vente de P'Accord Piano — prestations d'accordage, réparations et vente de pianos d'occasion à Chartres (28).";
+const canonical = "https://paccord-piano.fr/cgv";
+
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://paccord-piano.fr" },
+    { "@type": "ListItem", "position": 2, "name": "CGV", "item": "https://paccord-piano.fr/cgv" }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} noindex={true} schema={schemaBreadcrumb}>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="bg-primary-950 pt-16 pb-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <nav aria-label="Fil d'Ariane" class="mb-6">
+        <ol class="flex items-center gap-2 font-body text-sm text-neutral-500">
+          <li><a href="/" class="hover:text-accent-400 transition-colors">Accueil</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li aria-current="page" class="text-neutral-300">CGV</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading font-bold text-white text-3xl md:text-4xl">Conditions Générales de Vente</h1>
+      <p class="font-body text-neutral-500 text-sm mt-2">Dernière mise à jour : mars 2026</p>
+    </div>
+  </section>
+
+  <!-- Contenu -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+
+      <!-- Intro -->
+      <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-5 mb-10">
+        <p class="font-body text-sm text-neutral-700 leading-relaxed">
+          Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les prestations de services et ventes de biens proposées par P'Accord Piano (Simon PACOR, 3 Rue du Château d'eau, 28190 Mittainvilliers-Vérigny — RCS Chartres 983 922 030) à ses clients, qu'ils soient particuliers ou professionnels. Toute commande ou demande de prestation implique l'acceptation pleine et entière des présentes CGV.
+        </p>
+      </div>
+
+      <!-- 1. Objet -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 1 — Objet
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          P'Accord Piano propose des prestations de services autour du piano acoustique (accord, harmonisation, réglage des mécaniques, réparations et restaurations, conseil à l'achat et à la vente) ainsi que la vente de pianos droits d'occasion entièrement révisés. Les présentes CGV définissent les conditions dans lesquelles ces prestations sont réalisées et ces biens vendus.
+        </p>
+      </div>
+
+      <!-- 2. Tarifs et devis -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 2 — Tarifs, devis et TVA
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Accord :</strong> Le tarif de base est fixé à 90 € TTC pour un déplacement dans un rayon de 10 km autour de Chartres, et évolue progressivement selon la distance (jusqu'à 120 € TTC pour 60 à 100 km). Ce tarif comprend l'accord et les frais de déplacement pour un piano accordé régulièrement. Un piano nécessitant une ou plusieurs remises à hauteur préalables peut faire l'objet d'une facturation complémentaire, communiquée avant intervention.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Autres prestations :</strong> L'harmonisation, le réglage des mécaniques, les réparations, les restaurations et le conseil à l'achat font l'objet d'un devis gratuit établi après diagnostic de l'instrument. Aucune prestation n'est engagée sans devis accepté et signé par le client.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          <strong class="text-primary-900">TVA :</strong> P'Accord Piano bénéficie du régime de franchise en base de TVA. En conséquence, les prix sont indiqués en euros TTC, TVA non applicable — article 293 B du CGI.
+        </p>
+      </div>
+
+      <!-- 3. Modalités de réservation -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 3 — Modalités de réservation
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          Les interventions s'effectuent sur rendez-vous uniquement, du lundi au samedi. La réservation peut être effectuée via le formulaire en ligne sur paccord-piano.fr/contact, par téléphone au 06.22.26.77.83, ou par email à paccord.piano@gmail.com. Simon PACOR confirme le rendez-vous dans un délai de 48 heures ouvrées.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Aucun acompte n'est exigé à la réservation. La commande est ferme dès confirmation écrite (email ou SMS) de la part de Simon PACOR.
+        </p>
+      </div>
+
+      <!-- 4. Zone d'intervention -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 4 — Zone d'intervention
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          P'Accord Piano intervient à domicile dans un rayon de 100 km autour de Chartres, couvrant notamment l'Eure-et-Loir (28), les Yvelines (78), l'Eure (27), l'Orne (61) et la région parisienne (75). Les frais de déplacement sont inclus dans le tarif indiqué. Toute demande hors périmètre fait l'objet d'une étude tarifaire personnalisée.
+        </p>
+      </div>
+
+      <!-- 5. Annulation et report -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 5 — Annulation et report de rendez-vous
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Annulation par le client :</strong> Toute annulation doit être signalée dans les meilleurs délais par téléphone ou email. Aucune pénalité n'est appliquée en cas d'annulation au moins 24 heures avant le rendez-vous. Une annulation dans les 24 heures précédant l'intervention pourra faire l'objet d'une indemnité forfaitaire de déplacement correspondant à 50 % du tarif convenu.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          <strong class="text-primary-900">Annulation par P'Accord Piano :</strong> En cas de circonstances exceptionnelles (maladie, force majeure), P'Accord Piano s'engage à prévenir le client dans les meilleurs délais et à proposer un nouveau rendez-vous sans frais supplémentaires.
+        </p>
+      </div>
+
+      <!-- 6. Paiement -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 6 — Modalités de paiement
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          Le règlement des prestations est dû à la fin de l'intervention. Les modes de paiement acceptés sont : espèces, chèque, virement bancaire et paiement par carte bancaire (selon disponibilité du terminal de paiement).
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Pour les réparations et restaurations importantes, un acompte pouvant aller jusqu'à 30 % du devis total pourra être demandé à la commande des pièces nécessaires.
+        </p>
+      </div>
+
+      <!-- 7. Garantie — prestations de service -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 7 — Garantie des prestations de service
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Simon PACOR garantit la qualité de ses interventions. Si le résultat ne vous satisfait pas, signalez-le dans les 48 heures suivant l'intervention : Simon reviendra ajuster le travail sans frais supplémentaires. Cette garantie est conditionnée à une utilisation normale de l'instrument et ne couvre pas les dommages causés par des chocs, infiltrations d'eau, variations brutales de température ou toute dégradation extérieure à l'intervention.
+        </p>
+      </div>
+
+      <!-- 8. Vente de pianos d'occasion -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 8 — Vente de pianos d'occasion
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Garantie :</strong> Tous les pianos d'occasion proposés par P'Accord Piano bénéficient d'une garantie de 5 ans sur l'ensemble des interventions réalisées lors de leur révision.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Livraison :</strong> La livraison est offerte en rez-de-chaussée dans un rayon de 80 km autour de Chartres. Une livraison à l'étage fait l'objet d'une prestation complémentaire par transporteur agréé (devis sur demande). Une banquette assortie est incluse avec chaque piano vendu.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Essai :</strong> Les pianos sont accessibles sur rendez-vous uniquement, dans les locaux de P'Accord Piano. Il est fortement recommandé d'essayer le piano avant tout achat.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          <strong class="text-primary-900">Prix :</strong> Les prix sont indiqués en euros TTC. TVA non applicable — article 293 B du CGI.
+        </p>
+      </div>
+
+      <!-- 9. Responsabilité -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 9 — Responsabilité
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          P'Accord Piano ne saurait être tenu responsable des dommages indirects résultant de l'utilisation des services ou des biens vendus, ni des défauts préexistants à l'intervention non mentionnés par le client lors de la prise de rendez-vous. La responsabilité de P'Accord Piano est limitée au montant de la prestation concernée.
+        </p>
+      </div>
+
+      <!-- 10. Litiges -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 10 — Médiation et litiges
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          En cas de litige, le client s'adressera en priorité à P'Accord Piano pour trouver une solution amiable. En l'absence d'accord, le client peut recourir gratuitement à la médiation de la consommation.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          <strong class="text-primary-900">Médiateur compétent :</strong> Médiateur de la consommation CNPM — <a href="https://www.cnpm-mediation-consommation.eu" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:underline">cnpm-mediation-consommation.eu</a>
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Les présentes CGV sont régies par le droit français. En cas de litige non résolu par médiation, les tribunaux compétents du ressort de Chartres seront seuls compétents.
+        </p>
+      </div>
+
+      <!-- 11. Droit de rétractation -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          Article 11 — Droit de rétractation
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux prestations de services pleinement exécutées avant la fin du délai de rétractation avec l'accord exprès du consommateur. Pour les ventes de pianos (bien meuble d'occasion), le client dispose d'un délai de rétractation de 14 jours à compter de la réception du bien, sous réserve que l'instrument soit retourné en parfait état.
+        </p>
+      </div>
+
+      <!-- Liens bas de page -->
+      <div class="mt-12 pt-6 border-t border-neutral-200 flex flex-wrap gap-4">
+        <a href="/" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">← Retour à l'accueil</a>
+        <a href="/mentions-legales" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">Mentions légales</a>
+        <a href="/politique-de-confidentialite" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">Politique de confidentialité</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

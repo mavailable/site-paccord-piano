@@ -1,0 +1,52 @@
+# P'Accord Piano — Accordeur de piano à Chartres (Eure-et-Loir)
+
+> Simon PACOR est technicien accordeur réparateur de pianos, diplômé du Brevet des Métiers d'Art (BMA) à l'ITEMM (Institut Technologique Européen des Métiers de la Musique) et des conservatoires de Nantes et de Metz. Il intervient à domicile dans un rayon de 100 km autour de Chartres (Eure-et-Loir, 28).
+> Musicien et pianiste avant tout, Simon combine 8 ans d'expérience terrain avec une sensibilité musicale rare chez les techniciens. Il propose l'accord, l'harmonisation, le réglage des mécaniques, la réparation, la restauration et le conseil à l'achat ou à la vente de pianos acoustiques. Note Google : 5/5 (13 avis).
+> Interventions sur rendez-vous, du lundi au samedi.
+
+## Pages principales
+
+- [Accueil](https://paccord-piano.fr) : Présentation de Simon PACOR, ses services et son expertise d'accordeur de piano à Chartres.
+- [Réserver un accord](https://paccord-piano.fr/contact) : Formulaire de réservation avec calculateur de tarif par code postal (API OpenRouteService). Tarif à partir de 90 €.
+- [Pianos d'occasion](https://paccord-piano.fr/pianos-doccasion) : Catalogue de pianos droits d'occasion entièrement révisés, garantis 5 ans. Dès 1 200 €.
+- [Mentions légales](https://paccord-piano.fr/mentions-legales) : Informations légales de P'Accord Piano.
+- [CGV](https://paccord-piano.fr/cgv) : Conditions générales de vente.
+
+## Informations clés
+
+- **Nom** : P'Accord Piano
+- **Dirigeant** : Simon PACOR
+- **Métier** : Technicien accordeur réparateur de pianos
+- **Diplôme** : BMA — ITEMM (Le Mans) + Conservatoires de Nantes et Metz
+- **Expérience** : 8 ans
+- **Téléphone** : 06.22.26.77.83
+- **Email** : paccord.piano@gmail.com
+- **Adresse** : 3 Rue du Château d'eau, 28190 Mittainvilliers-Vérigny
+- **Zone d'intervention** : 100 km autour de Chartres (Eure-et-Loir 28, Yvelines 78, Eure 27, Orne 61, Paris 75)
+- **Tarif accord** : 90 € (0–10 km) à 120 € (60–100 km), frais de déplacement inclus
+- **Horaires** : Sur rendez-vous, lundi–samedi
+- **Note Google** : 5/5 (13 avis)
+- **Facebook** : https://www.facebook.com/profile.php?id=61557954886583
+- **RCS** : 983 922 030 (Chartres)
+- **TVA** : Non applicable — article 293 B du CGI
+
+## Services détaillés
+
+| Service | Tarif | Description |
+|---------|-------|-------------|
+| Accord de piano | 90–120 € | Accordage pianos droits et à queue. Tarif progressif selon distance. |
+| Harmonisation | Sur devis | Traitement des marteaux pour restaurer le timbre d'origine. |
+| Réglage des mécaniques | Sur devis | Optimisation de la mécanique pour un toucher homogène. |
+| Réparations / restauration | Sur devis | Des petites réparations aux restaurations complètes. |
+| Conseil achat/vente | Dès 60 € | Expertise avant achat ou vente d'un piano d'occasion. |
+
+## Pianos d'occasion disponibles (au 2026-03-21)
+
+| Modèle | Année | Origine | Prix |
+|--------|-------|---------|------|
+| Young Chang U109 | 1988 | Corée du Sud | 1 200 € |
+| Hellas 109 | 1982 | Finlande | 1 900 € |
+| Hyundai U835 | 1993 | Corée du Sud | 2 500 € |
+| Kawai KS-2F | 1984 | Japon | 4 000 € |
+
+Tous révisés, garantis 5 ans, banquette incluse, livraison offerte à 80 km (rez-de-chaussée).

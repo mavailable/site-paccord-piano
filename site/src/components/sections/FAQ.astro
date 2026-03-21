@@ -1,0 +1,69 @@
+---
+import { getFaq } from '@data/content';
+
+const faqItems = getFaq();
+---
+
+<!-- FAQ — fond blanc, accordéon natif <details>/<summary> -->
+<section id="faq" class="bg-white py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+      <span class="font-body text-sm font-semibold text-accent-600 uppercase tracking-widest mb-2 block">
+        Questions fréquentes
+      </span>
+      <h2 class="font-heading font-bold text-primary-950 text-3xl md:text-4xl">
+        Tout ce que vous voulez savoir
+      </h2>
+    </div>
+
+    <!-- Accordéon -->
+    <div class="divide-y divide-neutral-200 border-y border-neutral-200">
+      {faqItems.map((item) => (
+        <details class="group" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary
+            class="flex items-center justify-between gap-4 py-5 px-2 cursor-pointer list-none font-body font-semibold text-primary-900 hover:text-accent-600 transition-colors"
+            itemprop="name"
+          >
+            {item.question}
+            <!-- Chevron — rotation via CSS group-open -->
+            <span
+              class="flex-shrink-0 w-8 h-8 bg-neutral-100 group-open:bg-accent-500/15 rounded-full flex items-center justify-center transition-colors"
+              aria-hidden="true"
+            >
+              <svg
+                class="w-4 h-4 text-neutral-500 group-open:text-accent-600 group-open:rotate-180 transition-transform duration-200"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="px-2 pb-5 font-body text-neutral-700 leading-relaxed text-sm md:text-base"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
+          >
+            <div itemprop="text">
+              {item.answer}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA contact -->
+    <div class="mt-12 text-center">
+      <p class="font-body text-neutral-600 mb-4">
+        Vous avez une question qui n'est pas listée ici ?
+      </p>
+      <a
+        href={`/contact`}
+        class="inline-flex items-center gap-2 bg-primary-950 text-white font-body font-semibold px-6 py-3.5 rounded hover:bg-primary-800 transition-colors min-h-[48px]"
+      >
+        Poser ma question
+      </a>
+    </div>
+
+  </div>
+</section>

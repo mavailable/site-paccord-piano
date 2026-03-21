@@ -1,0 +1,21 @@
+{
+  "name": "P'Accord Piano",
+  "short_name": "P'Accord",
+  "description": "Accordeur de piano à Chartres — Simon PACOR, technicien diplômé BMA ITEMM",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

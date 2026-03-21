@@ -1,0 +1,93 @@
+---
+import { getTestimonials, getSiteInfo } from '@data/content';
+
+const allTestimonials = getTestimonials();
+const siteInfo = getSiteInfo();
+
+// 4 témoignages sélectionnés — les plus représentatifs
+const featuredSlugs = ['romuald-lagnez', 'julien-duvivier', 'alexia-glass', 'emmanuel-jorda'];
+const testimonials = featuredSlugs
+  .map(slug => allTestimonials.find(t => t.slug === slug))
+  .filter(Boolean) as typeof allTestimonials;
+---
+
+<!-- Témoignages — fond gris clair, grille de cards -->
+<section id="temoignages" class="bg-neutral-100 py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <!-- En-tête -->
+    <div class="text-center mb-14">
+      <span class="font-body text-sm font-semibold text-accent-600 uppercase tracking-widest mb-2 block">
+        Avis clients
+      </span>
+      <h2 class="font-heading font-bold text-primary-950 text-3xl md:text-4xl mb-3">
+        Ils lui ont confié leur piano
+      </h2>
+      <div class="flex items-center justify-center gap-2">
+        <div class="flex gap-0.5" aria-label="Note moyenne : 5 étoiles sur 5">
+          {Array(5).fill(0).map(() => (
+            <svg class="w-5 h-5 text-accent-500 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+        <span class="font-body text-sm text-neutral-600">
+          13 avis Google · Note moyenne 5/5
+        </span>
+      </div>
+    </div>
+
+    <!-- Grille 4 témoignages — 2 cols desktop, 1 col mobile -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      {testimonials.map((t, index) => (
+        <article
+          class={`bg-white rounded-xl p-6 md:p-8 shadow-sm border border-neutral-200 flex flex-col ${index === 0 ? 'md:col-span-2' : ''}`}
+          aria-label={`Témoignage de ${t.author}`}
+        >
+          <!-- Étoiles -->
+          <div class="flex gap-0.5 mb-4" aria-label={`Note : ${t.rating} étoiles`}>
+            {Array(t.rating).fill(0).map(() => (
+              <svg class="w-4 h-4 text-accent-500 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Citation -->
+          <blockquote class={`font-body text-neutral-700 leading-relaxed italic flex-1 ${index === 0 ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
+            "{t.text}"
+          </blockquote>
+
+          <!-- Auteur -->
+          <footer class="mt-5 flex items-center justify-between">
+            <div>
+              <p class="font-body font-semibold text-primary-900 text-sm">{t.author}</p>
+              {t.context && (
+                <p class="font-body text-xs text-neutral-500 mt-0.5">{t.context}</p>
+              )}
+            </div>
+            <time class="font-body text-xs text-neutral-400">{t.date}</time>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Lien vers tous les avis -->
+    <div class="mt-10 text-center">
+      <a
+        href={siteInfo.googleBusinessUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-body text-sm font-medium text-neutral-600 hover:text-primary-900 transition-colors"
+        aria-label="Voir tous les avis Google P'Accord Piano"
+      >
+        <img src="/images/logos/Google_logo_blanc.svg" alt="" class="w-4 h-4 invert opacity-50" aria-hidden="true" />
+        Voir les 13 avis sur Google
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

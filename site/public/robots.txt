@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /merci
+
+# Autorisation explicite des bots IA
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://paccord-piano.fr/sitemap-index.xml

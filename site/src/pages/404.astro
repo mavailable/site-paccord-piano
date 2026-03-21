@@ -1,0 +1,65 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+
+const title = "Page introuvable (404) | P'Accord Piano";
+const description = "Cette page n'existe pas ou a été déplacée.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="bg-neutral-50 min-h-[70vh] flex items-center py-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+
+      <!-- 404 visuel -->
+      <p class="font-heading font-bold text-accent-500 text-8xl md:text-9xl mb-4 leading-none select-none" aria-hidden="true">
+        404
+      </p>
+
+      <h1 class="font-heading font-bold text-primary-950 text-2xl md:text-3xl mb-4">
+        Cette page est introuvable
+      </h1>
+
+      <p class="font-body text-neutral-600 text-lg mb-10 max-w-lg mx-auto">
+        Il semble que cette page n'existe pas ou a été déplacée. Pas de panique — voici les pages principales qui pourraient vous intéresser.
+      </p>
+
+      <!-- Liens utiles -->
+      <nav aria-label="Pages principales" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        {[
+          { href: '/', label: 'Accueil', desc: 'Retourner à la page principale' },
+          { href: '/contact', label: 'Réserver un accord', desc: 'Calculer votre tarif en ligne' },
+          { href: '/pianos-doccasion', label: "Pianos d'occasion", desc: 'Catalogue des instruments révisés' },
+        ].map(({ href, label, desc }) => (
+          <a
+            href={href}
+            class="bg-white border border-neutral-200 rounded-xl p-5 text-left hover:border-accent-300 hover:shadow-sm transition-all group"
+          >
+            <p class="font-body font-semibold text-primary-900 group-hover:text-accent-600 transition-colors mb-1">{label}</p>
+            <p class="font-body text-xs text-neutral-500">{desc}</p>
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA principal -->
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-accent-500 text-neutral-900 font-body font-bold px-8 py-4 rounded hover:bg-accent-400 transition-colors min-h-[48px]"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Retourner à l'accueil
+      </a>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

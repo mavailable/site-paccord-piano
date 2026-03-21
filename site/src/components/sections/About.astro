@@ -1,0 +1,106 @@
+---
+import { getAbout } from '@data/content';
+
+const about = getAbout();
+
+const badges = [
+  "BMA — ITEMM (Le Mans)",
+  "Conservatoire de Nantes",
+  "Conservatoire de Metz",
+  "8 ans d'expérience",
+];
+---
+
+<!-- L'Artisan — fond ivoire, layout asymétrique texte/image -->
+<section id="artisan" class="bg-secondary-50 py-20 md:py-28 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <!-- En-tête section -->
+    <div class="mb-14">
+      <span class="font-body text-sm font-semibold text-accent-600 uppercase tracking-widest mb-2 block">
+        {about.sectionTitle}
+      </span>
+      <h2 class="font-heading font-bold text-primary-950 text-3xl md:text-4xl max-w-2xl">
+        {about.sectionSubtitle}
+      </h2>
+    </div>
+
+    <!-- Layout 2 colonnes : texte gauche + image droite -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Colonne texte -->
+      <article>
+        <div class="space-y-8">
+          {about.blocks.map((block) => (
+            <div>
+              <h3 class="font-heading font-semibold text-primary-900 text-lg mb-3">
+                {block.title}
+              </h3>
+              <p class="font-body text-neutral-700 leading-relaxed">
+                {block.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Badges diplômes -->
+        <div class="mt-10 flex flex-wrap gap-2">
+          {badges.map((badge) => (
+            <span class="inline-flex items-center font-body text-xs font-medium bg-primary-100 text-primary-800 border border-primary-200 px-3 py-1.5 rounded-full">
+              {badge}
+            </span>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-10">
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-primary-950 text-white font-body font-semibold px-6 py-3.5 rounded hover:bg-primary-800 transition-colors min-h-[48px]"
+          >
+            Je prends rendez-vous
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Colonne image -->
+      <div class="relative">
+        <!-- Image principale -->
+        <div class="relative rounded-xl overflow-hidden shadow-xl">
+          <picture>
+            <source media="(max-width: 478px)"  srcset="/images/artisan/360_lartisan.webp" />
+            <source media="(max-width: 767px)"  srcset="/images/artisan/478_lartisan.webp" />
+            <source media="(max-width: 991px)"  srcset="/images/artisan/767_lartisan.webp" />
+            <img
+              src="/images/artisan/1280_lartisan.webp"
+              alt="Simon PACOR, accordeur de piano, au travail sur un piano droit"
+              class="w-full aspect-[4/5] object-cover object-center"
+              loading="lazy"
+              width="640"
+              height="800"
+            />
+          </picture>
+          <!-- Overlay discret -->
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-950/30 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- Floating card — chiffre fort -->
+        <div class="absolute -bottom-5 -left-5 hidden md:block bg-white rounded-xl px-5 py-4 shadow-xl border border-neutral-100">
+          <p class="font-heading font-bold text-primary-950 text-3xl leading-none">5/5</p>
+          <p class="font-body text-xs text-neutral-500 mt-1">Note Google · 13 avis</p>
+          <div class="flex gap-0.5 mt-1.5" aria-label="Note 5 étoiles">
+            {Array(5).fill(0).map(() => (
+              <svg class="w-3.5 h-3.5 text-accent-500 fill-current" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

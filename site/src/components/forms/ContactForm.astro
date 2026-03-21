@@ -1,0 +1,477 @@
+---
+// Formulaire de contact/réservation — Web3Forms
+// Step 1 : Calculateur de tarif par code postal (ORS API)
+// Step 2 : Formulaire Web3Forms avec tarif pré-rempli
+
+const orsApiKey = import.meta.env.PUBLIC_ORS_API_KEY ?? '';
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'VOTRE_CLE_WEB3FORMS';
+---
+
+<!-- ═══════════════════════════════════════════════════════
+     ÉTAPE 1 — Calculateur de tarif
+══════════════════════════════════════════════════════════ -->
+<div id="step-calculator" class="mb-10">
+  <h2 class="font-heading font-bold text-primary-950 text-2xl mb-2">
+    Calculez votre tarif
+  </h2>
+  <p class="font-body text-neutral-600 mb-6">
+    Entrez votre code postal pour connaître votre tarif et vérifier que vous êtes dans la zone d'intervention.
+  </p>
+
+  <div class="flex flex-col sm:flex-row gap-3 max-w-md">
+    <div class="flex-1">
+      <label for="postalCode" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+        Votre code postal <span class="text-accent-600" aria-label="requis">*</span>
+      </label>
+      <input
+        type="text"
+        id="postalCode"
+        name="postalCode"
+        placeholder="ex. 75001"
+        maxlength="5"
+        pattern="[0-9]{5}"
+        class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+        aria-required="true"
+        autocomplete="postal-code"
+      />
+    </div>
+    <div class="sm:self-end">
+      <button
+        id="btnCalculate"
+        type="button"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-950 text-white font-body font-semibold px-6 py-3 rounded hover:bg-primary-800 transition-colors min-h-[48px]"
+      >
+        <span id="btnCalculateText">Voir mon tarif</span>
+        <svg id="btnCalculateSpinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Résultat calculateur -->
+  <div id="calcResult" class="mt-4 hidden" role="status" aria-live="polite"></div>
+</div>
+
+<hr class="border-neutral-200 mb-10" />
+
+<!-- ═══════════════════════════════════════════════════════
+     ÉTAPE 2 — Formulaire de réservation
+══════════════════════════════════════════════════════════ -->
+<div id="step-form">
+  <h2 class="font-heading font-bold text-primary-950 text-2xl mb-2">
+    Vos disponibilités et coordonnées
+  </h2>
+  <p class="font-body text-neutral-600 mb-6">
+    Simon vous recontactera sous 48h pour confirmer la date.
+  </p>
+
+  <form
+    id="contactForm"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    novalidate
+    class="space-y-6"
+  >
+    <!-- Champs cachés Web3Forms -->
+    <input type="hidden" name="access_key" value={web3formsKey} />
+    <input type="hidden" name="redirect" value="https://paccord-piano.fr/merci" />
+    <input type="hidden" name="from_name" value="P'Accord Piano — Site web" />
+    <input type="hidden" name="subject" value="Nouvelle demande de rendez-vous depuis le site" />
+    <!-- Tarif calculé (pré-rempli en JS) -->
+    <input type="hidden" id="hiddenTarif" name="tarif_estime" value="" />
+
+    <!-- Honeypot anti-spam (doit rester caché) -->
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="hidden"
+      style="display:none"
+      tabindex="-1"
+      aria-hidden="true"
+    />
+
+    <!-- ── Disponibilités ─────────────────────────────── -->
+    <fieldset>
+      <legend class="font-body font-semibold text-primary-900 text-sm mb-3">
+        Vos disponibilités <span class="font-normal text-neutral-500">(cochez tout ce qui vous convient)</span>
+      </legend>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        {[
+          ['lundi-matin', 'Lundi matin'],
+          ['lundi-am', 'Lundi après-midi'],
+          ['mardi-matin', 'Mardi matin'],
+          ['mardi-am', 'Mardi après-midi'],
+          ['mercredi-matin', 'Mercredi matin'],
+          ['mercredi-am', 'Mercredi après-midi'],
+          ['jeudi-matin', 'Jeudi matin'],
+          ['jeudi-am', 'Jeudi après-midi'],
+          ['vendredi-matin', 'Vendredi matin'],
+          ['vendredi-am', 'Vendredi après-midi'],
+          ['samedi-matin', 'Samedi matin'],
+          ['samedi-am', 'Samedi après-midi'],
+        ].map(([val, label]) => (
+          <label class="flex items-center gap-2 font-body text-sm text-neutral-700 cursor-pointer">
+            <input
+              type="checkbox"
+              name="disponibilites"
+              value={val}
+              class="w-4 h-4 accent-amber-500 rounded"
+            />
+            {label}
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <!-- ── Coordonnées ────────────────────────────────── -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <!-- Nom -->
+      <div>
+        <label for="nom" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+          Prénom et nom <span class="text-accent-600" aria-label="requis">*</span>
+        </label>
+        <input
+          type="text"
+          id="nom"
+          name="name"
+          required
+          autocomplete="name"
+          class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+          placeholder="Simon Dupont"
+          aria-required="true"
+        />
+        <p class="text-xs text-red-600 mt-1 hidden" id="err-nom" role="alert">Veuillez indiquer votre nom.</p>
+      </div>
+
+      <!-- Téléphone -->
+      <div>
+        <label for="telephone" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+          Numéro de téléphone <span class="text-accent-600" aria-label="requis">*</span>
+        </label>
+        <input
+          type="tel"
+          id="telephone"
+          name="telephone"
+          required
+          autocomplete="tel"
+          class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+          placeholder="06 12 34 56 78"
+          aria-required="true"
+        />
+        <p class="text-xs text-red-600 mt-1 hidden" id="err-tel" role="alert">Veuillez indiquer votre téléphone.</p>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+          Adresse e-mail <span class="text-accent-600" aria-label="requis">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+          placeholder="simon@exemple.fr"
+          aria-required="true"
+        />
+        <p class="text-xs text-red-600 mt-1 hidden" id="err-email" role="alert">Veuillez indiquer un email valide.</p>
+      </div>
+
+      <!-- Adresse complète -->
+      <div>
+        <label for="adresse" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+          Adresse complète <span class="text-accent-600" aria-label="requis">*</span>
+        </label>
+        <input
+          type="text"
+          id="adresse"
+          name="adresse"
+          required
+          autocomplete="street-address"
+          class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+          placeholder="12 rue des Lilas, 28000 Chartres"
+          aria-required="true"
+        />
+        <p class="text-xs text-red-600 mt-1 hidden" id="err-adresse" role="alert">Veuillez indiquer votre adresse.</p>
+      </div>
+    </div>
+
+    <!-- Remarques -->
+    <div>
+      <label for="message" class="font-body text-sm font-medium text-neutral-700 block mb-1">
+        Remarques sur votre piano
+        <span class="font-normal text-neutral-500">(facultatif)</span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        class="w-full border border-neutral-300 rounded px-4 py-3 font-body text-primary-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent resize-y"
+        placeholder="Marque, état approximatif, dernière fois accordé..."
+      ></textarea>
+    </div>
+
+    <!-- Mention RGPD -->
+    <p class="font-body text-xs text-neutral-500 leading-relaxed">
+      En soumettant ce formulaire, vous acceptez que vos données soient traitées par P'Accord Piano
+      dans le seul but de traiter votre demande de rendez-vous. Vos données ne seront jamais
+      transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de modification
+      et de suppression en écrivant à
+      <a href="mailto:paccord.piano@gmail.com" class="underline hover:text-neutral-700">paccord.piano@gmail.com</a>.
+      <a href="/politique-de-confidentialite" class="underline hover:text-neutral-700">Politique de confidentialité</a>.
+    </p>
+
+    <!-- Erreur globale -->
+    <div id="formError" class="hidden bg-red-50 border border-red-200 rounded p-4" role="alert">
+      <p class="font-body text-sm text-red-700">
+        Une erreur est survenue lors de l'envoi. Veuillez réessayer ou contacter Simon directement au
+        <a href="tel:0622267783" class="font-semibold underline">06.22.26.77.83</a>.
+      </p>
+    </div>
+
+    <!-- Bouton envoi -->
+    <button
+      type="submit"
+      id="btnSubmit"
+      class="inline-flex items-center justify-center gap-2 bg-accent-500 text-neutral-900 font-body font-bold text-base px-8 py-4 rounded hover:bg-accent-400 transition-colors min-h-[52px] w-full sm:w-auto shadow-md shadow-accent-500/20"
+    >
+      <span id="btnSubmitText">Envoyer ma demande de rendez-vous</span>
+      <svg id="btnSubmitSpinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<script define:vars={{ orsApiKey }}>
+  // ─── Grille tarifaire ─────────────────────────────────────────────────────
+  const SIMON_LAT = 48.49877507352234;
+  const SIMON_LON = 1.3101347159039247;
+
+  function getTarif(distanceKm) {
+    if (distanceKm <= 10)  return { tarif: 90,  label: '90 €' };
+    if (distanceKm <= 20)  return { tarif: 95,  label: '95 €' };
+    if (distanceKm <= 30)  return { tarif: 100, label: '100 €' };
+    if (distanceKm <= 40)  return { tarif: 105, label: '105 €' };
+    if (distanceKm <= 50)  return { tarif: 110, label: '110 €' };
+    if (distanceKm <= 60)  return { tarif: 115, label: '115 €' };
+    if (distanceKm <= 100) return { tarif: 120, label: '120 €' };
+    return null; // hors zone
+  }
+
+  // ─── Haversine fallback (si pas de clé ORS) ───────────────────────────────
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) * Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  async function geocodePostalCode(cp) {
+    // Priorité : ORS Geocoding
+    if (orsApiKey) {
+      try {
+        const url = `https://api.openrouteservice.org/geocode/search?api_key=${orsApiKey}&text=${cp}&boundary.country=FR&size=1&layers=locality,localadmin`;
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('ORS geocode error');
+        const data = await resp.json();
+        if (data.features?.length) {
+          const f = data.features[0];
+          return {
+            lat: f.geometry.coordinates[1],
+            lon: f.geometry.coordinates[0],
+            ville: f.properties.label?.replace(/, France$/, '') ?? cp,
+          };
+        }
+      } catch (_) { /* fallback */ }
+    }
+    // Fallback : API adresse.data.gouv.fr (gratuite, sans clé)
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${cp}&type=municipality&limit=1`;
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data.features?.length) {
+      const f = data.features[0];
+      return {
+        lat: f.geometry.coordinates[1],
+        lon: f.geometry.coordinates[0],
+        ville: f.properties.label ?? cp,
+      };
+    }
+    return null;
+  }
+
+  async function getRoadDistance(lat, lon) {
+    if (!orsApiKey) {
+      // Approximation : haversine × 1.3 (facteur routier moyen France)
+      return haversine(SIMON_LAT, SIMON_LON, lat, lon) * 1.3;
+    }
+    try {
+      const url = 'https://api.openrouteservice.org/v2/matrix/driving-car';
+      const body = {
+        locations: [[SIMON_LON, SIMON_LAT], [lon, lat]],
+        sources: [0],
+        destinations: [1],
+        metrics: ['distance'],
+        units: 'km'
+      };
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers: { 'Authorization': orsApiKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (!resp.ok) throw new Error('ORS matrix error');
+      const data = await resp.json();
+      return data.distances?.[0]?.[0] ?? null;
+    } catch (_) {
+      return haversine(SIMON_LAT, SIMON_LON, lat, lon) * 1.3;
+    }
+  }
+
+  // ─── UI ───────────────────────────────────────────────────────────────────
+  const btnCalc = document.getElementById('btnCalculate');
+  const btnText = document.getElementById('btnCalculateText');
+  const btnSpinner = document.getElementById('btnCalculateSpinner');
+  const calcResult = document.getElementById('calcResult');
+  const hiddenTarif = document.getElementById('hiddenTarif');
+  const cpInput = document.getElementById('postalCode');
+
+  function setLoading(loading) {
+    btnCalc.disabled = loading;
+    btnText.textContent = loading ? 'Calcul en cours…' : 'Voir mon tarif';
+    btnSpinner.classList.toggle('hidden', !loading);
+  }
+
+  function showResult(html, type = 'success') {
+    calcResult.innerHTML = html;
+    calcResult.classList.remove('hidden');
+  }
+
+  btnCalc.addEventListener('click', async () => {
+    const cp = cpInput.value.trim();
+    if (!/^\d{5}$/.test(cp)) {
+      showResult('<p class="text-sm text-red-600 font-body">Veuillez entrer un code postal à 5 chiffres.</p>', 'error');
+      return;
+    }
+    setLoading(true);
+    calcResult.classList.add('hidden');
+
+    try {
+      const geo = await geocodePostalCode(cp);
+      if (!geo) {
+        showResult('<p class="text-sm text-red-600 font-body">Code postal introuvable. Vérifiez et réessayez.</p>', 'error');
+        return;
+      }
+      const distKm = await getRoadDistance(geo.lat, geo.lon);
+      if (distKm === null) {
+        showResult('<p class="text-sm text-red-600 font-body">Impossible de calculer la distance. Contactez Simon directement.</p>', 'error');
+        return;
+      }
+      const result = getTarif(Math.round(distKm));
+
+      if (!result) {
+        // Hors zone
+        hiddenTarif.value = 'Hors zone (> 100 km)';
+        showResult(`
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 max-w-md">
+            <p class="font-body font-semibold text-amber-800 text-sm mb-1">
+              Vous semblez être en dehors de la zone habituelle (${Math.round(distKm)} km).
+            </p>
+            <p class="font-body text-amber-700 text-sm">
+              Contactez Simon directement pour en discuter —
+              <a href="tel:0622267783" class="font-semibold underline">06.22.26.77.83</a>
+            </p>
+          </div>
+        `);
+        return;
+      }
+
+      hiddenTarif.value = `${result.tarif} € (${Math.round(distKm)} km, ${geo.ville})`;
+      showResult(`
+        <div class="bg-primary-50 border border-primary-200 rounded-lg p-4 max-w-md">
+          <p class="font-body font-bold text-primary-900 text-lg mb-1">
+            Votre accord — <span class="text-accent-600">${result.label}</span>
+          </p>
+          <p class="font-body text-primary-700 text-sm">
+            Pour <strong>${geo.ville}</strong> (environ ${Math.round(distKm)} km).
+            Ce tarif comprend l'accord et les frais de déplacement.
+          </p>
+          <p class="font-body text-primary-500 text-xs mt-2">
+            Le formulaire ci-dessous est pré-rempli avec ce tarif estimé.
+          </p>
+        </div>
+      `);
+    } catch (e) {
+      showResult('<p class="text-sm text-red-600 font-body">Une erreur est survenue. Réessayez ou appelez le 06.22.26.77.83.</p>', 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  // Calculer aussi si on appuie sur Entrée dans le champ
+  cpInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); btnCalc.click(); }
+  });
+
+  // ─── Validation + soumission formulaire ──────────────────────────────────
+  const form = document.getElementById('contactForm');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const btnSubmitText = document.getElementById('btnSubmitText');
+  const btnSubmitSpinner = document.getElementById('btnSubmitSpinner');
+  const formError = document.getElementById('formError');
+
+  function validateField(id, errorId, condition) {
+    const el = document.getElementById(id);
+    const err = document.getElementById(errorId);
+    if (!condition(el.value)) {
+      err.classList.remove('hidden');
+      el.classList.add('border-red-400');
+      return false;
+    }
+    err.classList.add('hidden');
+    el.classList.remove('border-red-400');
+    return true;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // Validation basique
+    let valid = true;
+    valid &= validateField('nom', 'err-nom', v => v.trim().length >= 2);
+    valid &= validateField('telephone', 'err-tel', v => v.trim().length >= 8);
+    valid &= validateField('email', 'err-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()));
+    valid &= validateField('adresse', 'err-adresse', v => v.trim().length >= 5);
+    if (!valid) return;
+
+    // Spinner
+    btnSubmit.disabled = true;
+    btnSubmitText.textContent = 'Envoi en cours…';
+    btnSubmitSpinner.classList.remove('hidden');
+    formError.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const resp = await fetch(form.action, { method: 'POST', body: formData });
+      const data = await resp.json();
+      if (data.success) {
+        // Tracking Umami — conversion formulaire
+        if (typeof umami !== 'undefined') {
+          umami.track('form-submit', { page: 'contact' });
+        }
+        window.location.href = '/merci';
+      } else {
+        throw new Error('Web3Forms error');
+      }
+    } catch (_) {
+      formError.classList.remove('hidden');
+      btnSubmit.disabled = false;
+      btnSubmitText.textContent = 'Envoyer ma demande de rendez-vous';
+      btnSubmitSpinner.classList.add('hidden');
+    }
+  });
+</script>

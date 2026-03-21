@@ -1,0 +1,24 @@
+{
+  "sectionTitle": "L'Artisan",
+  "sectionSubtitle": "Simon PACOR — L'expertise au cœur de chaque note",
+  "name": "Simon PACOR",
+  "blocks": [
+    {
+      "title": "La double compétence",
+      "text": "Diplômé du Brevet des Métiers d'Art (BMA) à l'ITEMM — l'école de référence nationale pour la facture instrumentale — Simon combine 8 ans de pratique terrain avec une formation musicale solide : les conservatoires de Nantes puis de Metz ont forgé son oreille de pianiste. Ce double regard, celui du technicien et celui du musicien, fait toute la différence au moment d'affiner votre instrument."
+    },
+    {
+      "title": "L'approche",
+      "text": "Chaque piano est unique. Un Kawai de 1984 n'a pas le même caractère qu'un jeune piano droit coréen. Simon prend le temps de comprendre votre instrument, votre façon de jouer et ce que vous attendez de lui — avant de poser la moindre clé d'accordeur. L'objectif n'est pas un accord standard : c'est le meilleur accord pour votre piano."
+    },
+    {
+      "title": "Le territoire",
+      "text": "Simon intervient à domicile dans un rayon de 100 km autour de Chartres : tout l'Eure-et-Loir (28), les Yvelines (78), l'Eure (27), l'Orne (61) et Paris (75). Chaque déplacement est inclus dans le tarif, calculé précisément selon votre distance."
+    }
+  ],
+  "stats": [
+    { "value": "8 ans", "label": "d'expérience terrain" },
+    { "value": "5/5 ⭐", "label": "note Google (13 avis)" },
+    { "value": "100 km", "label": "de rayon d'intervention" }
+  ]
+}

@@ -1,0 +1,204 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+
+const title = "Politique de confidentialité | P'Accord Piano";
+const description = "Politique de confidentialité et traitement des données personnelles — P'Accord Piano, Chartres.";
+const canonical = "https://paccord-piano.fr/politique-de-confidentialite";
+
+const schemaBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://paccord-piano.fr" },
+    { "@type": "ListItem", "position": 2, "name": "Politique de confidentialité", "item": "https://paccord-piano.fr/politique-de-confidentialite" }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} noindex={true} schema={schemaBreadcrumb}>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="bg-primary-950 pt-16 pb-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <nav aria-label="Fil d'Ariane" class="mb-6">
+        <ol class="flex items-center gap-2 font-body text-sm text-neutral-500">
+          <li><a href="/" class="hover:text-accent-400 transition-colors">Accueil</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li aria-current="page" class="text-neutral-300">Politique de confidentialité</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading font-bold text-white text-3xl md:text-4xl">Politique de confidentialité</h1>
+      <p class="font-body text-neutral-500 text-sm mt-2">Dernière mise à jour : mars 2026</p>
+    </div>
+  </section>
+
+  <!-- Contenu -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+
+      <!-- Intro -->
+      <div class="bg-primary-50 border border-primary-100 rounded-xl p-5 mb-10">
+        <p class="font-body text-sm text-primary-800 leading-relaxed">
+          P'Accord Piano (Simon PACOR) s'engage à protéger la confidentialité de vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi n° 78-17 du 6 janvier 1978 dite « Informatique et Libertés ».
+        </p>
+      </div>
+
+      <!-- 1. Responsable du traitement -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          1. Responsable du traitement
+        </h2>
+        <div class="font-body text-neutral-700 text-sm space-y-1">
+          <p><strong class="text-primary-900">Identité :</strong> Simon PACOR — P'Accord Piano</p>
+          <p><strong class="text-primary-900">Adresse :</strong> 3 Rue du Château d'eau, 28190 Mittainvilliers-Vérigny</p>
+          <p><strong class="text-primary-900">Email :</strong> <a href="mailto:paccord.piano@gmail.com" class="text-accent-600 hover:underline">paccord.piano@gmail.com</a></p>
+          <p><strong class="text-primary-900">Téléphone :</strong> <a href="tel:0622267783" class="text-accent-600 hover:underline">06.22.26.77.83</a></p>
+        </div>
+      </div>
+
+      <!-- 2. Données collectées -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          2. Données collectées
+        </h2>
+        <p class="font-body text-neutral-700 text-sm mb-4 leading-relaxed">
+          P'Accord Piano collecte uniquement les données que vous soumettez volontairement via le formulaire de contact/réservation :
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm font-body border-collapse">
+            <thead>
+              <tr class="bg-neutral-50">
+                <th class="text-left font-semibold text-primary-900 px-4 py-2 border border-neutral-200">Donnée</th>
+                <th class="text-left font-semibold text-primary-900 px-4 py-2 border border-neutral-200">Finalité</th>
+                <th class="text-left font-semibold text-primary-900 px-4 py-2 border border-neutral-200">Obligatoire</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Prénom et nom', 'Identifier le demandeur', 'Oui'],
+                ['Adresse e-mail', 'Répondre à la demande', 'Oui'],
+                ['Numéro de téléphone', 'Confirmer le rendez-vous', 'Oui'],
+                ['Adresse complète', 'Calculer le tarif de déplacement', 'Oui'],
+                ['Disponibilités', 'Planifier le rendez-vous', 'Non'],
+                ['Message / remarques', 'Préparer l\'intervention', 'Non'],
+              ].map(([donnee, finalite, obligatoire]) => (
+                <tr>
+                  <td class="px-4 py-2 border border-neutral-200 text-neutral-700">{donnee}</td>
+                  <td class="px-4 py-2 border border-neutral-200 text-neutral-600">{finalite}</td>
+                  <td class="px-4 py-2 border border-neutral-200 text-neutral-600">{obligatoire}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. Base légale -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          3. Base légale du traitement
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Le traitement de vos données repose sur votre <strong>consentement explicite</strong> (article 6.1.a du RGPD), exprimé au moment de la soumission du formulaire de contact. Vous pouvez retirer votre consentement à tout moment sans que cela remette en cause la légalité du traitement antérieur.
+        </p>
+      </div>
+
+      <!-- 4. Durée de conservation -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          4. Durée de conservation
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Vos données sont conservées pendant une durée maximale de <strong>3 ans</strong> à compter de votre dernière prise de contact, conformément aux recommandations de la CNIL pour la gestion des relations prospects/clients. Passé ce délai, vos données sont supprimées ou anonymisées.
+        </p>
+      </div>
+
+      <!-- 5. Destinataires -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          5. Destinataires des données
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          Vos données sont traitées uniquement par Simon PACOR (P'Accord Piano) pour répondre à votre demande. Elles ne sont jamais vendues ni cédées à des tiers.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          Le formulaire de contact utilise le service <strong>Web3Forms</strong> (web3forms.com) pour l'acheminement technique des messages. Web3Forms est un sous-traitant qui traite vos données uniquement pour les acheminer et les mettre à disposition de P'Accord Piano, sans en faire d'usage propre.
+        </p>
+      </div>
+
+      <!-- 6. Cookies et traceurs -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          6. Cookies et mesure d'audience
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-3">
+          Ce site utilise <strong>Umami Analytics</strong> pour mesurer l'audience de manière anonyme. Umami est un outil d'analyse respectueux de la vie privée : il ne dépose <strong>aucun cookie</strong> sur votre appareil et ne collecte aucune donnée personnelle (ni adresse IP complète, ni empreinte de navigateur). Les données de navigation sont agrégées et anonymes.
+        </p>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          En l'absence de cookies tiers ou de traceurs publicitaires, <strong>aucune bannière de consentement aux cookies n'est requise</strong> conformément aux recommandations de la CNIL.
+        </p>
+      </div>
+
+      <!-- 7. Vos droits -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          7. Vos droits
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed mb-4">
+          Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :
+        </p>
+        <ul class="space-y-2 font-body text-sm text-neutral-700">
+          {[
+            ['Droit d\'accès', 'Obtenir une copie de vos données traitées'],
+            ['Droit de rectification', 'Corriger des données inexactes ou incomplètes'],
+            ['Droit à l\'effacement', '« Droit à l\'oubli » — demander la suppression de vos données'],
+            ['Droit à la portabilité', 'Recevoir vos données dans un format structuré'],
+            ['Droit d\'opposition', 'S\'opposer au traitement de vos données'],
+            ['Droit à la limitation', 'Limiter le traitement dans certaines circonstances'],
+          ].map(([droit, description]) => (
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+              </svg>
+              <span><strong class="text-primary-900">{droit}</strong> — {description}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-5 bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+          <p class="font-body text-sm text-neutral-700">
+            Pour exercer vos droits, contactez Simon PACOR par email à
+            <a href="mailto:paccord.piano@gmail.com" class="text-accent-600 hover:underline font-medium">paccord.piano@gmail.com</a>
+            ou par courrier à l'adresse du siège social. Simon s'engage à répondre dans un délai d'un mois.
+          </p>
+          <p class="font-body text-xs text-neutral-500 mt-2">
+            En cas de réponse insatisfaisante, vous pouvez introduire une réclamation auprès de la
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-accent-600 hover:underline">CNIL</a>
+            (Commission Nationale de l'Informatique et des Libertés — 3 Place de Fontenoy, 75007 Paris).
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. Sécurité -->
+      <div class="mb-10">
+        <h2 class="font-heading font-bold text-primary-950 text-xl mb-4 pb-2 border-b border-neutral-200">
+          8. Sécurité des données
+        </h2>
+        <p class="font-body text-neutral-700 text-sm leading-relaxed">
+          P'Accord Piano met en œuvre les mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, toute modification, divulgation ou destruction. Le site est servi en HTTPS (chiffrement TLS) via Cloudflare Pages.
+        </p>
+      </div>
+
+      <!-- Liens bas de page -->
+      <div class="mt-12 pt-6 border-t border-neutral-200 flex flex-wrap gap-4">
+        <a href="/" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">← Retour à l'accueil</a>
+        <a href="/mentions-legales" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">Mentions légales</a>
+        <a href="/cgv" class="font-body text-sm text-neutral-500 hover:text-primary-900 transition-colors">CGV</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
