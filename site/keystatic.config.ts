@@ -7,7 +7,7 @@ export default config({
   singletons: {
     siteInfo: singleton({
       label: 'Informations générales',
-      path: 'site/src/content/site-info/index',
+      path: 'site/src/data/content/site-info/index',
       format: { data: 'json' },
       schema: {
         name: fields.text({ label: 'Nom commercial', defaultValue: "P'Accord Piano" }),
@@ -27,7 +27,7 @@ export default config({
 
     hero: singleton({
       label: 'Section Hero',
-      path: 'site/src/content/hero/index',
+      path: 'site/src/data/content/hero/index',
       format: { data: 'json' },
       schema: {
         h1: fields.text({ label: 'Titre principal (H1)', defaultValue: 'Accordeur de piano à Chartres et en Eure-et-Loir' }),
@@ -42,7 +42,7 @@ export default config({
 
     about: singleton({
       label: 'Section L\'Artisan',
-      path: 'site/src/content/about/index',
+      path: 'site/src/data/content/about/index',
       format: { data: 'json' },
       schema: {
         sectionTitle: fields.text({ label: 'Titre de section', defaultValue: "L'Artisan" }),
@@ -67,7 +67,7 @@ export default config({
 
     contact: singleton({
       label: 'Section Contact',
-      path: 'site/src/content/contact/index',
+      path: 'site/src/data/content/contact/index',
       format: { data: 'json' },
       schema: {
         sectionTitle: fields.text({ label: 'Titre', defaultValue: 'Réserver un accord' }),
@@ -83,7 +83,7 @@ export default config({
     services: collection({
       label: 'Services',
       slugField: 'title',
-      path: 'site/src/content/services/*',
+      path: 'site/src/data/content/services/*',
       format: { data: 'json' },
       schema: {
         title: fields.slug({ name: { label: 'Titre du service' } }),
@@ -100,7 +100,7 @@ export default config({
     testimonials: collection({
       label: 'Témoignages',
       slugField: 'author',
-      path: 'site/src/content/testimonials/*',
+      path: 'site/src/data/content/testimonials/*',
       format: { data: 'json' },
       schema: {
         author: fields.slug({ name: { label: 'Nom du client' } }),
@@ -114,7 +114,7 @@ export default config({
     faq: collection({
       label: 'FAQ',
       slugField: 'question',
-      path: 'site/src/content/faq/*',
+      path: 'site/src/data/content/faq/*',
       format: { data: 'json' },
       schema: {
         question: fields.slug({ name: { label: 'Question' } }),
@@ -126,7 +126,7 @@ export default config({
     pianos: collection({
       label: "Pianos d'occasion",
       slugField: 'modele',
-      path: 'site/src/content/pianos/*',
+      path: 'site/src/data/content/pianos/*',
       format: { data: 'json' },
       schema: {
         marque: fields.text({ label: 'Marque (ex: Kawai, Yamaha…)' }),

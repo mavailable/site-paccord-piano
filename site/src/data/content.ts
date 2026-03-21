@@ -115,36 +115,36 @@ export interface Piano {
 // ── READERS ────────────────────────────────────────────────────────────────
 
 export function getSiteInfo(): SiteInfo {
-  return readJson<SiteInfo>('src/content/site-info/index.json');
+  return readJson<SiteInfo>('src/data/content/site-info/index.json');
 }
 
 export function getHero(): Hero {
-  return readJson<Hero>('src/content/hero/index.json');
+  return readJson<Hero>('src/data/content/hero/index.json');
 }
 
 export function getAbout(): About {
-  return readJson<About>('src/content/about/index.json');
+  return readJson<About>('src/data/content/about/index.json');
 }
 
 export function getContactInfo(): ContactInfo {
-  return readJson<ContactInfo>('src/content/contact/index.json');
+  return readJson<ContactInfo>('src/data/content/contact/index.json');
 }
 
 export function getServices(): Service[] {
-  return readCollection<Service>('src/content/services')
+  return readCollection<Service>('src/data/content/services')
     .sort((a, b) => a.order - b.order);
 }
 
 export function getTestimonials(): Testimonial[] {
-  return readCollection<Testimonial>('src/content/testimonials');
+  return readCollection<Testimonial>('src/data/content/testimonials');
 }
 
 export function getFaq(): FaqItem[] {
-  return readCollection<FaqItem>('src/content/faq')
+  return readCollection<FaqItem>('src/data/content/faq')
     .sort((a, b) => a.order - b.order);
 }
 
 export function getPianos(): Piano[] {
-  return readCollection<Piano>('src/content/pianos')
+  return readCollection<Piano>('src/data/content/pianos')
     .sort((a, b) => a.order - b.order);
 }
