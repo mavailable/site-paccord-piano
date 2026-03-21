@@ -2,7 +2,7 @@ import { config, fields, singleton, collection } from '@keystatic/core';
 
 export default config({
   storage: { kind: 'cloud' },
-  cloud: { project: 'web-factory/paccord-piano' },
+  cloud: { project: 'paccord-piano/site-paccord-piano' },
 
   singletons: {
     siteInfo: singleton({
