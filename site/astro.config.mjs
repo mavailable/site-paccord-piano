@@ -11,7 +11,7 @@ const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default :
 
 export default defineConfig({
   site: 'https://paccord-piano.fr',
-  output: isKeystatic ? 'hybrid' : 'static',
+  output: 'static',
   adapter: isKeystatic ? cloudflare() : undefined,
   integrations: [
     sitemap({

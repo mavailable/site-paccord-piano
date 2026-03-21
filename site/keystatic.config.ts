@@ -122,5 +122,26 @@ export default config({
         order: fields.integer({ label: "Ordre d'affichage", defaultValue: 0 }),
       },
     }),
+
+    pianos: collection({
+      label: "Pianos d'occasion",
+      slugField: 'modele',
+      path: 'src/content/pianos/*',
+      format: { data: 'json' },
+      schema: {
+        marque: fields.text({ label: 'Marque (ex: Kawai, Yamaha…)' }),
+        modele: fields.slug({ name: { label: 'Modèle (ex: U109, KS-2F…)' } }),
+        annee: fields.integer({ label: 'Année de fabrication', defaultValue: 1980 }),
+        origine: fields.text({ label: 'Pays d\'origine (ex: Japon)' }),
+        hauteur: fields.text({ label: 'Hauteur (ex: 109 cm)' }),
+        serie: fields.text({ label: 'N° de série (optionnel)', defaultValue: '' }),
+        prix: fields.integer({ label: 'Prix (€)', defaultValue: 1500 }),
+        disponible: fields.checkbox({ label: 'Disponible à la vente', defaultValue: true }),
+        description: fields.text({ label: 'Description complète', multiline: true }),
+        image: fields.text({ label: 'Chemin image (ex: /images/pianos/kawai.webp)', defaultValue: '' }),
+        imageAlt: fields.text({ label: 'Description de l\'image (alt)' }),
+        order: fields.integer({ label: "Ordre d'affichage", defaultValue: 99 }),
+      },
+    }),
   },
 });

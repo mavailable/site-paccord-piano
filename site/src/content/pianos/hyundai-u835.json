@@ -1,0 +1,14 @@
+{
+  "marque": "Hyundai",
+  "modele": "U835",
+  "annee": 1993,
+  "origine": "Corée du Sud",
+  "hauteur": "121 cm",
+  "serie": "",
+  "prix": 2500,
+  "disponible": true,
+  "description": "Piano droit de taille intermédiaire (121 cm), offrant une sonorité plus riche et plus projetée qu'un 109 cm. Idéal pour un musicien confirmé souhaitant un instrument plus expressif. Entièrement révisé.",
+  "image": "",
+  "imageAlt": "Piano droit Hyundai U835, 121 cm, 1993",
+  "order": 3
+}

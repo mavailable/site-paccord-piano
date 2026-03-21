@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
+import { getPianos } from '@data/content';
 
 const title = "Pianos d'occasion révisés à Chartres | P'Accord Piano";
 const description = "Pianos droits d'occasion entièrement restaurés, garantis 5 ans, banquette incluse, livraison offerte à 80 km. Sur rendez-vous. Dès 1 200 €.";
@@ -17,71 +18,32 @@ const schemaBreadcrumb = {
   ]
 };
 
+const pianos = getPianos().filter(p => p.disponible);
+
 const schemaItemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Pianos d'occasion révisés — P'Accord Piano",
   "description": "Sélection de pianos droits d'occasion entièrement restaurés, garantis 5 ans, banquette incluse.",
-  "numberOfItems": 4,
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Piano droit Young Chang U109", "description": "Piano droit 109 cm, Corée du Sud (1988). Entièrement révisé.", "brand": { "@type": "Brand", "name": "Young Chang" }, "offers": { "@type": "Offer", "price": "1200", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "seller": { "@id": "https://paccord-piano.fr/#business" } } } },
-    { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Piano droit Hellas 109", "description": "Piano droit 109 cm, Finlande (1982). Sonorité chaleureuse. Entièrement révisé.", "brand": { "@type": "Brand", "name": "Hellas" }, "offers": { "@type": "Offer", "price": "1900", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "seller": { "@id": "https://paccord-piano.fr/#business" } } } },
-    { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Piano droit Hyundai U835", "description": "Piano droit 121 cm, Corée du Sud (1993). Entièrement révisé.", "brand": { "@type": "Brand", "name": "Hyundai" }, "offers": { "@type": "Offer", "price": "2500", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "seller": { "@id": "https://paccord-piano.fr/#business" } } } },
-    { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "Piano droit Kawai KS-2F", "description": "Piano droit 125 cm, Japon (1984). Grande marque japonaise. Entièrement révisé.", "brand": { "@type": "Brand", "name": "Kawai" }, "offers": { "@type": "Offer", "price": "4000", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "seller": { "@id": "https://paccord-piano.fr/#business" } } } }
-  ]
+  "numberOfItems": pianos.length,
+  "itemListElement": pianos.map((piano, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Product",
+      "name": `Piano droit ${piano.marque} ${piano.modele}`,
+      "description": `Piano droit ${piano.hauteur}, ${piano.origine} (${piano.annee}). Entièrement révisé.`,
+      "brand": { "@type": "Brand", "name": piano.marque },
+      "offers": {
+        "@type": "Offer",
+        "price": String(piano.prix),
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://paccord-piano.fr/#business" }
+      }
+    }
+  }))
 };
-
-// Catalogue — données directement ici (pas de CMS pour les pianos d'occasion pour l'instant)
-const pianos = [
-  {
-    id: 'young-chang-u109',
-    marque: 'Young Chang',
-    modele: 'U109',
-    annee: 1988,
-    origine: 'Corée du Sud',
-    hauteur: '109 cm',
-    serie: '142340',
-    prix: 1200,
-    description: "Piano droit compact idéal pour les débutants et les joueurs intermédiaires. Fabriqué en Corée du Sud, il offre un son clair et équilibré avec une mécanique fiable adaptée à une pratique régulière. Entièrement révisé et prêt à jouer.",
-    alt: "Piano droit Young Chang U109, 109 cm, 1988",
-  },
-  {
-    id: 'hellas-109',
-    marque: 'Hellas',
-    modele: '109',
-    annee: 1982,
-    origine: 'Finlande',
-    hauteur: '109 cm',
-    serie: '',
-    prix: 1900,
-    description: "Piano droit de facture scandinave, fabriqué en Finlande. Sa sonorité est particulièrement chaleureuse et ronde — caractéristique des pianos nordiques de l'époque. Entièrement révisé, mécaniques réglées, accord stable.",
-    alt: "Piano droit Hellas 109, fabrication finlandaise, 1982",
-  },
-  {
-    id: 'hyundai-u835',
-    marque: 'Hyundai',
-    modele: 'U835',
-    annee: 1993,
-    origine: 'Corée du Sud',
-    hauteur: '121 cm',
-    serie: '',
-    prix: 2500,
-    description: "Piano droit de taille intermédiaire (121 cm), offrant une sonorité plus riche et plus projetée qu'un 109 cm. Idéal pour un musicien confirmé souhaitant un instrument plus expressif. Entièrement révisé.",
-    alt: "Piano droit Hyundai U835, 121 cm, 1993",
-  },
-  {
-    id: 'kawai-ks2f',
-    marque: 'Kawai',
-    modele: 'KS-2F',
-    annee: 1984,
-    origine: 'Japon',
-    hauteur: '125 cm',
-    serie: '',
-    prix: 4000,
-    description: "Piano droit de grande marque japonaise, réputé pour la qualité de sa mécanique et de sa table d'harmonie. 125 cm permettant une excellente projection sonore. Entièrement révisé par un technicien BMA — qualité professionnelle.",
-    alt: "Piano droit Kawai KS-2F, 125 cm, fabrication japonaise, 1984",
-  },
-];
 
 const engagements = [
   { icon: "shield", label: "Garantie 5 ans", detail: "Sur toutes les interventions réalisées" },
@@ -170,13 +132,24 @@ const engagements = [
             itemscope itemtype="https://schema.org/Product"
             aria-label={`${piano.marque} ${piano.modele}`}
           >
-            <!-- Placeholder photo (photos à venir du client) -->
-            <!-- TODO wf-08: remplacer par la vraie photo du piano quand disponible -->
+            <!-- Photo du piano ou placeholder -->
             <div class="aspect-[16/10] bg-primary-100 flex flex-col items-center justify-center text-primary-500 relative overflow-hidden">
-              <svg class="w-16 h-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-              </svg>
-              <p class="font-body text-xs text-primary-400 mt-2">Photo à venir</p>
+              {piano.image ? (
+                <img
+                  src={piano.image}
+                  alt={piano.imageAlt}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <>
+                  <svg class="w-16 h-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                  </svg>
+                  <p class="font-body text-xs text-primary-400 mt-2">Photo à venir</p>
+                </>
+              )}
               <!-- Prix en overlay -->
               <div class="absolute top-4 right-4">
                 <span class="font-body font-bold text-sm bg-accent-500 text-neutral-900 px-3 py-1.5 rounded-full">

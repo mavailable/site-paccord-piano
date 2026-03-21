@@ -96,6 +96,22 @@ export interface ContactInfo {
   formSuccessUrl: string;
 }
 
+export interface Piano {
+  slug: string;
+  marque: string;
+  modele: string;
+  annee: number;
+  origine: string;
+  hauteur: string;
+  serie: string;
+  prix: number;
+  disponible: boolean;
+  description: string;
+  image: string;
+  imageAlt: string;
+  order: number;
+}
+
 // ── READERS ────────────────────────────────────────────────────────────────
 
 export function getSiteInfo(): SiteInfo {
@@ -125,5 +141,10 @@ export function getTestimonials(): Testimonial[] {
 
 export function getFaq(): FaqItem[] {
   return readCollection<FaqItem>('src/content/faq')
+    .sort((a, b) => a.order - b.order);
+}
+
+export function getPianos(): Piano[] {
+  return readCollection<Piano>('src/content/pianos')
     .sort((a, b) => a.order - b.order);
 }
