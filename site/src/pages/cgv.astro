@@ -2,19 +2,17 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
+import { getBreadcrumbSchema } from '@data/schemas';
 
 const title = "Conditions Générales de Vente | P'Accord Piano";
 const description = "Conditions générales de vente de P'Accord Piano — prestations d'accordage, réparations et vente de pianos d'occasion à Chartres (28).";
 const canonical = "https://paccord-piano.fr/cgv";
 
-const schemaBreadcrumb = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://paccord-piano.fr" },
-    { "@type": "ListItem", "position": 2, "name": "CGV", "item": "https://paccord-piano.fr/cgv" }
-  ]
-};
+// Schema.org Breadcrumb centralise — doctrine C1
+const schemaBreadcrumb = getBreadcrumbSchema([
+  { name: 'Accueil', url: 'https://paccord-piano.fr' },
+  { name: 'CGV', url: '/cgv' },
+]);
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical} noindex={true} schema={schemaBreadcrumb}>

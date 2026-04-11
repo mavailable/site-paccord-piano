@@ -3,19 +3,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import ContactForm from '@components/forms/ContactForm.astro';
+import { getBreadcrumbSchema } from '@data/schemas';
 
 const title = "Réserver un accord de piano | P'Accord Piano — Chartres";
 const description = "Calculez votre tarif par code postal et réservez en ligne. Réponse sous 48h. Déplacements en Eure-et-Loir, Île-de-France et alentours.";
 const canonical = "https://paccord-piano.fr/contact";
 
-const schemaBreadcrumb = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://paccord-piano.fr" },
-    { "@type": "ListItem", "position": 2, "name": "Réserver un accord", "item": "https://paccord-piano.fr/contact" }
-  ]
-};
+// Schema.org Breadcrumb centralise — doctrine C1
+const schemaBreadcrumb = getBreadcrumbSchema([
+  { name: 'Accueil', url: 'https://paccord-piano.fr' },
+  { name: 'Réserver un accord', url: '/contact' },
+]);
 ---
 
 <BaseLayout title={title} description={description} canonical={canonical} schema={schemaBreadcrumb}>
