@@ -11,12 +11,15 @@ function readJson<T>(filePath: string): T {
   return JSON.parse(fs.readFileSync(fullPath, 'utf-8')) as T;
 }
 
-function readCollection<T>(dirPath: string): T[] {
+function readCollection<T>(dirPath: string): (T & { slug: string })[] {
   const fullDir = path.join(process.cwd(), dirPath);
   if (!fs.existsSync(fullDir)) return [];
   return fs.readdirSync(fullDir)
     .filter(f => f.endsWith('.json'))
-    .map(f => readJson<T>(path.join(dirPath, f)));
+    .map(f => ({
+      slug: f.replace(/\.json$/, ''),
+      ...readJson<T>(path.join(dirPath, f)),
+    }));
 }
 
 // ── TYPES ──────────────────────────────────────────────────────────────────

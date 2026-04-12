@@ -54,16 +54,16 @@ const testimonials = featuredSlugs
           </div>
 
           <!-- Citation -->
-          <blockquote class={`font-body text-neutral-700 leading-relaxed italic flex-1 ${index === 0 ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
+          <blockquote class={`font-body text-neutral-700 leading-relaxed italic flex-1 ${index === 0 ? 'text-base md:text-lg' : 'text-sm md:text-base'}`} data-cms-field={`testimonials.${t.slug}.text`} data-cms-type="text">
             "{t.text}"
           </blockquote>
 
           <!-- Auteur -->
           <footer class="mt-5 flex items-center justify-between">
             <div>
-              <p class="font-body font-semibold text-primary-900 text-sm">{t.author}</p>
+              <p class="font-body font-semibold text-primary-900 text-sm" data-cms-field={`testimonials.${t.slug}.author`} data-cms-type="text">{t.author}</p>
               {t.context && (
-                <p class="font-body text-xs text-neutral-500 mt-0.5">{t.context}</p>
+                <p class="font-body text-xs text-neutral-500 mt-0.5" data-cms-field={`testimonials.${t.slug}.context`} data-cms-type="text">{t.context}</p>
               )}
             </div>
             <time class="font-body text-xs text-neutral-400">{t.date}</time>

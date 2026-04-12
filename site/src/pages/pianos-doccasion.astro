@@ -168,7 +168,7 @@ const engagements = [
             <div class="p-6 flex flex-col flex-1">
               <div class="flex items-start justify-between mb-3">
                 <div>
-                  <h2 class="font-heading font-bold text-primary-950 text-xl" itemprop="name">
+                  <h2 class="font-heading font-bold text-primary-950 text-xl" itemprop="name" data-cms-field={`pianos.${piano.slug}.marque`} data-cms-type="text">
                     {piano.marque} {piano.modele}
                   </h2>
                   <p class="font-body text-sm text-neutral-500 mt-0.5">
@@ -177,7 +177,7 @@ const engagements = [
                 </div>
               </div>
 
-              <p class="font-body text-neutral-700 text-sm leading-relaxed flex-1 mb-5" itemprop="description">
+              <p class="font-body text-neutral-700 text-sm leading-relaxed flex-1 mb-5" itemprop="description" data-cms-field={`pianos.${piano.slug}.description`} data-cms-type="text">
                 {piano.description}
               </p>
 

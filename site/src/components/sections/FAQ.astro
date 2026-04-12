@@ -25,6 +25,7 @@ const faqItems = getFaq();
           <summary
             class="flex items-center justify-between gap-4 py-5 px-2 cursor-pointer list-none font-body font-semibold text-primary-900 hover:text-accent-600 transition-colors"
             itemprop="name"
+            data-cms-field={`faq.${item.slug}.question`} data-cms-type="text"
           >
             {item.question}
             <!-- Chevron — rotation via CSS group-open -->
@@ -44,7 +45,7 @@ const faqItems = getFaq();
             class="px-2 pb-5 font-body text-neutral-700 leading-relaxed text-sm md:text-base"
             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
           >
-            <div itemprop="text">
+            <div itemprop="text" data-cms-field={`faq.${item.slug}.answer`} data-cms-type="text">
               {item.answer}
             </div>
           </div>

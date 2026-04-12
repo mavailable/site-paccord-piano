@@ -11,12 +11,12 @@ const about = getAbout();
 >
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
     <dl class="grid grid-cols-3 gap-4 sm:gap-8 divide-x divide-primary-800/60">
-      {about.stats.map((stat) => (
+      {about.stats.map((stat, i) => (
         <div class="flex flex-col items-center text-center px-2">
-          <dt class="font-heading font-bold text-3xl sm:text-4xl text-accent-400 leading-none mb-2">
+          <dt class="font-heading font-bold text-3xl sm:text-4xl text-accent-400 leading-none mb-2" data-cms-field={`about.stats.${i}.value`} data-cms-type="text">
             {stat.value}
           </dt>
-          <dd class="font-body text-xs sm:text-sm text-neutral-400 leading-tight">
+          <dd class="font-body text-xs sm:text-sm text-neutral-400 leading-tight" data-cms-field={`about.stats.${i}.label`} data-cms-type="text">
             {stat.label}
           </dd>
         </div>

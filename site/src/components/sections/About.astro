@@ -17,10 +17,10 @@ const badges = [
 
     <!-- En-tête section -->
     <div class="mb-14">
-      <span class="font-body text-sm font-semibold text-accent-600 uppercase tracking-widest mb-2 block">
+      <span class="font-body text-sm font-semibold text-accent-600 uppercase tracking-widest mb-2 block" data-cms-field="about.sectionTitle" data-cms-type="text">
         {about.sectionTitle}
       </span>
-      <h2 class="font-heading font-bold text-primary-950 text-3xl md:text-4xl max-w-2xl">
+      <h2 class="font-heading font-bold text-primary-950 text-3xl md:text-4xl max-w-2xl" data-cms-field="about.sectionSubtitle" data-cms-type="text">
         {about.sectionSubtitle}
       </h2>
     </div>
@@ -31,12 +31,12 @@ const badges = [
       <!-- Colonne texte -->
       <article>
         <div class="space-y-8">
-          {about.blocks.map((block) => (
+          {about.blocks.map((block, i) => (
             <div>
-              <h3 class="font-heading font-semibold text-primary-900 text-lg mb-3">
+              <h3 class="font-heading font-semibold text-primary-900 text-lg mb-3" data-cms-field={`about.blocks.${i}.title`} data-cms-type="text">
                 {block.title}
               </h3>
-              <p class="font-body text-neutral-700 leading-relaxed">
+              <p class="font-body text-neutral-700 leading-relaxed" data-cms-field={`about.blocks.${i}.text`} data-cms-type="text">
                 {block.text}
               </p>
             </div>

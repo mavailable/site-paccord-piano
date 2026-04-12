@@ -44,7 +44,7 @@ const otherServices = services.filter(s => s.slug !== 'accord');
           </picture>
           <!-- Badge prix flottant -->
           <div class="absolute top-4 left-4">
-            <span class="font-body font-bold text-sm bg-accent-500 text-neutral-900 px-3 py-1.5 rounded-full">
+            <span class="font-body font-bold text-sm bg-accent-500 text-neutral-900 px-3 py-1.5 rounded-full" data-cms-field="services.accord.price" data-cms-type="text">
               {mainService.price}
             </span>
           </div>
@@ -55,13 +55,13 @@ const otherServices = services.filter(s => s.slug !== 'accord');
             <p class="font-body text-xs font-semibold text-accent-500 uppercase tracking-widest mb-3">
               Service principal
             </p>
-            <h3 class="font-heading font-bold text-white text-2xl md:text-3xl mb-4">
+            <h3 class="font-heading font-bold text-white text-2xl md:text-3xl mb-4" data-cms-field="services.accord.title" data-cms-type="text">
               {mainService.title}
             </h3>
-            <p class="font-body text-neutral-400 leading-relaxed mb-3">
+            <p class="font-body text-neutral-400 leading-relaxed mb-3" data-cms-field="services.accord.description" data-cms-type="text">
               {mainService.description}
             </p>
-            <p class="font-body text-sm text-neutral-500 italic">
+            <p class="font-body text-sm text-neutral-500 italic" data-cms-field="services.accord.priceNote" data-cms-type="text">
               {mainService.priceNote}
             </p>
           </div>
@@ -93,19 +93,20 @@ const otherServices = services.filter(s => s.slug !== 'accord');
               loading="lazy"
               width="400"
               height="250"
+              data-cms-field={`services.${service.slug}.image`} data-cms-type="image"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent"></div>
           </div>
           <!-- Contenu -->
           <div class="p-6 flex flex-col flex-1">
-            <h3 class="font-heading font-semibold text-white text-lg mb-2">
+            <h3 class="font-heading font-semibold text-white text-lg mb-2" data-cms-field={`services.${service.slug}.title`} data-cms-type="text">
               {service.title}
             </h3>
-            <p class="font-body text-neutral-400 text-sm leading-relaxed flex-1 mb-4">
+            <p class="font-body text-neutral-400 text-sm leading-relaxed flex-1 mb-4" data-cms-field={`services.${service.slug}.shortDesc`} data-cms-type="text">
               {service.shortDesc}
             </p>
             <div class="flex items-center justify-between">
-              <span class="font-body text-sm font-semibold text-accent-400">
+              <span class="font-body text-sm font-semibold text-accent-400" data-cms-field={`services.${service.slug}.price`} data-cms-type="text">
                 {service.price}
               </span>
               <a
