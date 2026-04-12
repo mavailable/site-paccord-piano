@@ -1,17 +1,10 @@
 {
   "colors": {
-    "primary": "#5c5c5c",
-    "accent": "#f9b233",
-    "dark": "#1a1a1a"
+    "primary": "#2563eb",
+    "accent": "#059669",
+    "dark": "#0f172a"
   },
   "pageNames": {
-    "/": "Accueil",
-    "/contact": "Contact",
-    "/pianos-doccasion": "Pianos d'occasion",
-    "/mentions-legales": "Mentions legales",
-    "/politique-de-confidentialite": "Confidentialite",
-    "/cgv": "CGV",
-    "/merci": "Merci",
-    "/404": "Page 404"
+    "/": "Accueil"
   }
 }
