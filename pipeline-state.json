@@ -1,0 +1,15 @@
+{
+  "project": "pacorpiano",
+  "last_completed": "wf-cms-connect",
+  "score": 90,
+  "timestamp": "2026-04-12T19:10:00Z",
+  "modules_activated": [],
+  "pending": [],
+  "cms": {
+    "type": "maison",
+    "installed": "2026-04-12",
+    "singletons": ["site-info", "hero", "about", "contact", "seo"],
+    "collections": ["services", "testimonials", "faq", "pianos"],
+    "env_vars_configured": true
+  }
+}
