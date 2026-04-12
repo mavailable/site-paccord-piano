@@ -1,0 +1,39 @@
+{
+  "global": {
+    "siteName": "P'Accord Piano",
+    "separator": " | ",
+    "defaultOgImage": "/images/og-image.jpg"
+  },
+  "pages": {
+    "/": {
+      "title": "Accordeur de piano a Chartres | Simon PACOR",
+      "description": "Technicien accordeur reparateur de pianos, diplome BMA ITEMM. A domicile a Chartres et 100 km alentours. A partir de 90 euros. Devis gratuit.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/contact": {
+      "title": "Reserver un accord de piano",
+      "description": "Calculez votre tarif par code postal et reservez en ligne. Reponse sous 48h.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/pianos-doccasion": {
+      "title": "Pianos d'occasion revises",
+      "description": "Pianos droits d'occasion entierement revises par un technicien BMA. Garantie et livraison incluses.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/merci": {
+      "title": "Demande envoyee",
+      "description": "",
+      "ogImage": "",
+      "noindex": true
+    },
+    "/404": {
+      "title": "Page introuvable",
+      "description": "",
+      "ogImage": "",
+      "noindex": true
+    }
+  }
+}

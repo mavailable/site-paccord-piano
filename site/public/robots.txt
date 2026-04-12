@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /merci
+Disallow: /admin/
+Disallow: /api/
 
 # Autorisation explicite des bots IA
 User-agent: GPTBot

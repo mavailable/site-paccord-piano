@@ -1,30 +1,23 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-
-const isKeystatic = process.env.KEYSTATIC === 'true';
-
-// Imports dynamiques — chargés uniquement quand KEYSTATIC=true
-const keystatic = isKeystatic ? (await import('@keystatic/astro')).default : null;
-const react = isKeystatic ? (await import('@astrojs/react')).default : null;
-const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default : null;
+import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://paccord-piano.fr',
   output: 'static',
-  adapter: isKeystatic ? cloudflare() : undefined,
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } },
       filter: (page) =>
         !page.includes('/merci') &&
-        !page.includes('/404'),
+        !page.includes('/404') &&
+        !page.includes('/admin'),
       changefreq: 'monthly',
       priority: 0.7,
       lastmod: new Date(),
     }),
-    ...(isKeystatic && react ? [react()] : []),
-    ...(isKeystatic && keystatic ? [keystatic()] : []),
+    react(),
   ],
   compressHTML: true,
   vite: {
