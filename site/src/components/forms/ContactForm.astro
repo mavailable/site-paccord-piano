@@ -2,9 +2,18 @@
 // Formulaire de contact/réservation — Web3Forms
 // Step 1 : Calculateur de tarif par code postal (ORS API)
 // Step 2 : Formulaire Web3Forms avec tarif pré-rempli
+import { web3formsKey as fallbackKey } from '@data/business';
+import fs from 'node:fs';
 
 const orsApiKey = import.meta.env.PUBLIC_ORS_API_KEY ?? '';
-const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'VOTRE_CLE_WEB3FORMS';
+
+// Web3Forms — cascade: CMS content → env var → cle Marc (defaut agence)
+let cmsKey = '';
+try {
+  const raw = fs.readFileSync('src/content/contact/index.json', 'utf-8');
+  cmsKey = JSON.parse(raw).web3formsKey || '';
+} catch {}
+const web3formsKey = cmsKey || fallbackKey;
 ---
 
 <!-- ═══════════════════════════════════════════════════════
