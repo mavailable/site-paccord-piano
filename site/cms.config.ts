@@ -82,7 +82,7 @@ const cmsConfig: CmsConfig = {
         step1Title: { type: 'text', label: 'Etape 1' },
         step2Title: { type: 'text', label: 'Etape 2' },
         formSuccessUrl: { type: 'text', label: 'URL page succes' },
-        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Creez votre cle gratuite sur web3forms.com puis collez-la ici pour recevoir vos formulaires directement.' },
+        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Collez votre cle pour recevoir vos formulaires directement. Guide : marcm.fr/aide/web3forms' },
       },
     },
   },
