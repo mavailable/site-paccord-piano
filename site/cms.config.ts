@@ -9,6 +9,19 @@ const cmsConfig: CmsConfig = {
   branch: 'dev',
   siteName: "P'Accord Piano",
 
+  site: {
+    siteUrl: 'https://paccord-piano.fr',
+    previewUrl: 'https://site-paccord-piano.pages.dev',
+    clientType: 'freelance-consultant',
+    umamiSiteId: '523884ab-ba8d-4b51-9eba-a8d46154bad7',
+    umamiShareUrl: 'https://cloud.umami.is/share/f014204a17c718af/master.site-paccord-piano.pages.dev',
+    contactMarc: {
+      phone: '06 88 76 66 48',
+      whatsapp: '33688766648',
+      email: 'marc@muller.im',
+    },
+  },
+
   singletons: {
     'site-info': {
       label: 'Informations generales',
